@@ -10,6 +10,7 @@ Requires Python 3.11+ and no third-party Python dependencies.
 
 ```sh
 python -m unittest discover -s tests -v
+python -m udp.builder --check
 python -m udp.simulator
 # Separate terminal:
 python -m udp.client press
@@ -39,7 +40,7 @@ See [hardware/BOM.md](hardware/BOM.md), [hardware/WIRING.md](hardware/WIRING.md)
 
 ## Project layout
 
-- `udp/`: zero-dependency Python simulator, client, protocol validation, and hardware checks
+- `udp/`: zero-dependency Python simulator, client, protocol validation, hardware checks, and configuration generator
 - `protocol/`: canonical messages and device contract
 - `hardware/`: documented profiles, bill of materials, wiring and validation inputs
 - `firmware/`: initial ESP-IDF BLE firmware target (not hardware-tested)

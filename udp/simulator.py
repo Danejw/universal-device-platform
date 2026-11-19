@@ -5,16 +5,13 @@ import asyncio
 import json
 import logging
 
+from udp.builder import make_manifest
+from udp.hardware import read_json, WATCH
 from udp.protocol import MAX_FRAME_BYTES, ProtocolError, VERSION, decode_frame, encode_frame
 
-DEVICE_ID = "watch-v0"
-MANIFEST = {
-    "type": "manifest",
-    "protocol": VERSION,
-    "device_id": DEVICE_ID,
-    "firmware_version": "sim-0.1.0",
-    "capabilities": ["button.primary"],
-}
+WATCH_CONFIG = read_json(WATCH)
+DEVICE_ID = WATCH_CONFIG["id"]
+MANIFEST = make_manifest(WATCH_CONFIG, "sim-0.1.0")
 
 
 class VirtualWatch:

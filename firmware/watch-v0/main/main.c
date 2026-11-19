@@ -20,14 +20,15 @@
 #include "services/gap/ble_svc_gap.h"
 #include "services/gatt/ble_svc_gatt.h"
 
-#define BUTTON_GPIO GPIO_NUM_1
-#define DEVICE_NAME "UDP-W0"
+#include "generated_device_config.h"
+#define BUTTON_GPIO ((gpio_num_t)UDP_BUTTON_GPIO)
+#define DEVICE_NAME UDP_BLE_DEVICE_NAME
 #define BLE_EVENT_BUTTON 'P'
 #define BLE_EVENT_PONG '!'
 #define BLE_CMD_PING '?'
 
 static const char *TAG = "udp_watch";
-static const char manifest[] = "{\"v\":1,\"id\":\"watch-v0\",\"caps\":[\"button.primary\"]}";
+static const char manifest[] = UDP_BLE_MANIFEST;
 static uint8_t own_addr_type;
 static uint16_t event_val_handle;
 static bool subscribed;

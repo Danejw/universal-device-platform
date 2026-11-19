@@ -16,7 +16,7 @@ class HardwareTests(unittest.TestCase):
     def test_reserved_camera_gpio_rejected(self):
         watch = copy.deepcopy(self.watch)
         watch["components"][1]["wiring"]["signal_pin"] = "D11"
-        self.assertIn("Unknown signal pin: D11", validate_watch(self.board, watch, self.parts))
+        self.assertIn("GPIO reserved for Sense camera/mic: 42", validate_watch(self.board, watch, self.parts))
 
     def test_duplicate_i2c_rejected(self):
         watch = copy.deepcopy(self.watch)
