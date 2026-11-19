@@ -1,0 +1,47 @@
+{
+  "version": "udp/1",
+  "device_id": "watch-v0",
+  "active_capabilities": [
+    "button.primary"
+  ],
+  "simulated_manifest": {
+    "type": "manifest",
+    "protocol": "udp/1",
+    "device_id": "watch-v0",
+    "firmware_version": "sim-0.1.0",
+    "capabilities": [
+      "button.primary"
+    ]
+  },
+  "ble_v0": {
+    "advertising_name": "UDP-W0",
+    "service_uuid": "8d39fbe0-3fa8-475f-9e08-f6ca3ff2de10",
+    "manifest": {
+      "v": 1,
+      "id": "watch-v0",
+      "caps": [
+        "button.primary"
+      ]
+    },
+    "notification_bytes": {
+      "P": "button.primary.pressed",
+      "!": "device.pong"
+    },
+    "command_bytes": {
+      "?": "device.ping"
+    }
+  },
+  "normalized_press": {
+    "type": "event",
+    "protocol": "udp/1",
+    "device_id": "watch-v0",
+    "event": "button.primary.pressed",
+    "seq": 1
+  },
+  "invalid_capability": "camera.capture",
+  "semantics": {
+    "button": "single press, no release signal, tap-to-toggle only",
+    "sequence": "receiver-assigned per connection; BLE v0 does not transmit a counter",
+    "provenance": "transport metadata (simulated or physical), not a device-reported fact"
+  }
+}
