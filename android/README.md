@@ -2,6 +2,10 @@
 
 The Android app remains independently owned by Personal Voice. This repository provides a native Kotlin **example adapter** to integrate via the Android BLE APIs; it does not write into the Personal Voice repository.
 
+## Test on Android before hardware arrives
+
+Add `VirtualWatchClient.kt` alongside `WatchBleClient.kt` in an Android project. Both use the same listener callbacks. Invoke `connect()`, `pressPrimaryButton()`, `ping()`, and `close()` from a development-only UI to exercise the Personal Voice input pipeline. Keep it behind a development flag so simulated events cannot be confused with real-device data. This adapter is also a Kotlin source example and has not been built as an independent Android application.
+
 ## Bring-up
 
 1. Pairing/discovery is **not automatic until the Android app implements permissions and connection UX**. Require Bluetooth on and runtime `BLUETOOTH_SCAN`/`BLUETOOTH_CONNECT` permissions on Android 12+; handle legacy Android location permissions as needed.
