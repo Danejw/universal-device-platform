@@ -1,0 +1,74 @@
+{
+  "id": "watch-v0",
+  "stage": "usb_bench_prototype",
+  "controller": "seeed-xiao-esp32s3-sense",
+  "firmware": "esp-idf",
+  "power": {
+    "source": "usb_c_5v",
+    "battery_connected": false
+  },
+  "components": [
+    {
+      "id": "seeed-xiao-esp32s3-sense",
+      "quantity": 1,
+      "role": "controller_camera_microphone",
+      "installed": true
+    },
+    {
+      "id": "momentary-pushbutton",
+      "quantity": 1,
+      "role": "primary_button",
+      "installed": true,
+      "wiring": {
+        "signal_pin": "D0",
+        "return_pin": "GND",
+        "active_level": "low",
+        "pull": "internal_pullup"
+      }
+    },
+    {
+      "id": "adafruit-lsm6ds3tr-c",
+      "quantity": 1,
+      "role": "six_axis_imu",
+      "installed": false,
+      "wiring": {
+        "bus": "i2c",
+        "sda": "D4",
+        "scl": "D5",
+        "logic_voltage_v": 3.3,
+        "address_hex": "0x6A"
+      }
+    },
+    {
+      "id": "sparkfun-max30101-max32664",
+      "quantity": 1,
+      "role": "optical_heart_rate_experimental",
+      "installed": false,
+      "wiring": {
+        "bus": "i2c",
+        "sda": "D4",
+        "scl": "D5",
+        "logic_voltage_v": 3.3,
+        "address_hex": "0x55"
+      }
+    }
+  ],
+  "active_capabilities": [
+    "button.primary"
+  ],
+  "planned_capabilities": [
+    "camera.capture",
+    "microphone.record",
+    "motion.imu",
+    "biometrics.heart_rate"
+  ],
+  "limitations": [
+    "USB-powered only; no battery or charger validation",
+    "Camera model varies across shipped board revisions",
+    "Optional sensors are cataloged but not implemented in firmware",
+    "Optical health metrics are exploratory and not validated for clinical or wrist-worn accuracy"
+  ],
+  "sources": [
+    "https://wiki.seeedstudio.com/xiao_esp32s3_pin_multiplexing/"
+  ]
+}

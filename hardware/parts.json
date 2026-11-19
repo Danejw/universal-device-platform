@@ -1,0 +1,74 @@
+[
+  {
+    "id": "seeed-xiao-esp32s3-sense",
+    "name": "XIAO ESP32S3 Sense (Sense expansion with camera and digital microphone)",
+    "vendor": "Seeed Studio",
+    "sku": "113991115",
+    "qty": 1,
+    "priority": "required",
+    "documented_unit_usd": 18.9,
+    "buy_url": "https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html",
+    "source_url": "https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/",
+    "notes": "Current board described with fixed-focus OV5640; transitional OV3660 and older OV2640 exist. Confirm shipped variant."
+  },
+  {
+    "id": "momentary-pushbutton",
+    "name": "Normally-open momentary tactile button",
+    "vendor": "Generic",
+    "sku": null,
+    "qty": 1,
+    "priority": "required",
+    "documented_unit_usd": null,
+    "buy_url": null,
+    "source_url": null,
+    "notes": "Choose a prototyping button rated for 3.3V logic. D0 GPIO1 to ground, internal pull-up. Footprint to be selected."
+  },
+  {
+    "id": "adafruit-lsm6ds3tr-c",
+    "name": "LSM6DS3TR-C 6-DoF IMU STEMMA QT / Qwiic",
+    "vendor": "Adafruit",
+    "sku": "4503",
+    "qty": 1,
+    "priority": "optional_phase_2",
+    "documented_unit_usd": 9.95,
+    "buy_url": "https://www.adafruit.com/product/4503",
+    "source_url": "https://learn.adafruit.com/adafruit-lsm6ds3tr-c-6-dof-accel-gyro-imu/pinouts",
+    "notes": "I2C default 0x6A; 0x6B possible with solder jumper. Needs 4-wire QT to male breakout or soldered jumper wires."
+  },
+  {
+    "id": "sparkfun-max30101-max32664",
+    "name": "Pulse Oximeter and Heart Rate Sensor (MAX30101 + MAX32664) Qwiic",
+    "vendor": "SparkFun",
+    "sku": "SEN-15219",
+    "qty": 1,
+    "priority": "optional_experimental",
+    "documented_unit_usd": 48.95,
+    "buy_url": "https://www.sparkfun.com/sparkfun-pulse-oximeter-and-heart-rate-sensor-max30101-max32664-qwiic.html",
+    "source_url": "https://learn.sparkfun.com/tutorials/sparkfun-pulse-oximeter-and-heart-rate-monitor-hookup-guide",
+    "notes": "I2C 0x55. Intended for experimental optical measurements, not medically validated or guaranteed accurate at the wrist."
+  },
+  {
+    "id": "usb_c_data_cable",
+    "name": "USB-C cable with data support",
+    "vendor": "Generic",
+    "sku": null,
+    "qty": 1,
+    "priority": "required",
+    "documented_unit_usd": null,
+    "buy_url": null,
+    "source_url": null,
+    "notes": "USB power and flashing; verify it carries data."
+  },
+  {
+    "id": "qwiic_4_pin_cable",
+    "name": "4-pin STEMMA QT / Qwiic cable and wire adapter",
+    "vendor": "Generic",
+    "sku": null,
+    "qty": 1,
+    "priority": "optional_phase_2",
+    "documented_unit_usd": null,
+    "buy_url": null,
+    "source_url": null,
+    "notes": "XIAO Sense does not expose a native Qwiic socket; connect to D4, D5, 3V3, GND."
+  }
+]

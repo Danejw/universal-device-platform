@@ -1,0 +1,83 @@
+{
+  "id": "seeed-xiao-esp32s3-sense",
+  "manufacturer": "Seeed Studio",
+  "sku": "113991115",
+  "status": "manufacturer_documented_not_bench_verified",
+  "soc": "ESP32-S3R8",
+  "flash_mb": 8,
+  "psram_mb": 8,
+  "wifi": "2.4 GHz",
+  "bluetooth": "BLE 5.0",
+  "size_mm": {
+    "length": 21,
+    "width": 17.8,
+    "height_with_sense_board": 15
+  },
+  "pins": {
+    "D0": 1,
+    "D1": 2,
+    "D2": 3,
+    "D3": 4,
+    "D4": 5,
+    "D5": 6,
+    "D6": 43,
+    "D7": 44,
+    "D8": 7,
+    "D9": 8,
+    "D10": 9
+  },
+  "reserved_gpio": {
+    "camera": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      38,
+      39,
+      40,
+      47,
+      48
+    ],
+    "pdm_microphone": [
+      41,
+      42
+    ],
+    "micro_sd_when_used": [
+      7,
+      8,
+      9,
+      21
+    ]
+  },
+  "i2c": {
+    "sda": "D4",
+    "scl": "D5",
+    "logic_voltage_v": 3.3
+  },
+  "camera_variants_supported": [
+    "OV2640",
+    "OV3660",
+    "OV5640"
+  ],
+  "camera_as_shipped": "unknown_until_actual_board_is_inspected",
+  "microphone": {
+    "interface": "PDM",
+    "data_gpio": 41,
+    "clock_gpio": 42
+  },
+  "voltage": {
+    "usb_input_v": 5,
+    "battery_nominal_v": 3.7,
+    "external_3v3_max_ma_documented": 700
+  },
+  "sources": [
+    "https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/",
+    "https://wiki.seeedstudio.com/xiao_esp32s3_pin_multiplexing/",
+    "https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html"
+  ]
+}
