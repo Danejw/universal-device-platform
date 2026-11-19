@@ -48,6 +48,8 @@ class WatchBleClient(private val context: Context, private val listener: Listene
     private var eventCharacteristic: BluetoothGattCharacteristic? = null
     private var commandCharacteristic: BluetoothGattCharacteristic? = null
     private var sequence = 0
+    private var ready = false
+    private var pendingManifest: Pair<String, List<String>>? = null
 
     private val scanCallback = object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
@@ -76,6 +78,7 @@ class WatchBleClient(private val context: Context, private val listener: Listene
     }
 
     fun ping() {
+        if (!ready) { listener.onError("Watch notifications are not active"); return }
         val currentGatt = gatt ?: return
         val characteristic = commandCharacteristic ?: return
         if (Build.VERSION.SDK_INT >= 33) {
@@ -96,6 +99,8 @@ class WatchBleClient(private val context: Context, private val listener: Listene
         gatt = null
         eventCharacteristic = null
         commandCharacteristic = null
+        pendingManifest = null
+        ready = false
     }
 
     private val callback = object : BluetoothGattCallback() {
@@ -108,6 +113,8 @@ class WatchBleClient(private val context: Context, private val listener: Listene
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 eventCharacteristic = null
                 commandCharacteristic = null
+                pendingManifest = null
+                ready = false
                 listener.onDisconnected()
             }
         }
@@ -156,7 +163,7 @@ class WatchBleClient(private val context: Context, private val listener: Listene
                     error("Notification registration rejected")
                 }
                 val cccd = events.getDescriptor(CCCD) ?: error("CCCD missing")
-                listener.onConnected(id, capabilities)
+                pendingManifest = id to capabilities
                 if (Build.VERSION.SDK_INT >= 33) {
                     val rc = g.writeDescriptor(cccd, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
                     if (rc != android.bluetooth.BluetoothStatusCodes.SUCCESS) {
@@ -171,6 +178,18 @@ class WatchBleClient(private val context: Context, private val listener: Listene
             } catch (exc: Exception) {
                 listener.onError("Invalid V0 manifest: ${exc.message}")
             }
+        }
+
+        override fun onDescriptorWrite(g: BluetoothGatt, d: BluetoothGattDescriptor,
+                                       status: Int) {
+            if (d.uuid != CCCD) return
+            if (status != BluetoothGatt.GATT_SUCCESS) {
+                listener.onError("Notification subscription failed: $status")
+                return
+            }
+            ready = true
+            pendingManifest?.let { (id, caps) -> listener.onConnected(id, caps) }
+            pendingManifest = null
         }
 
         override fun onCharacteristicRead(g: BluetoothGatt, c: BluetoothGattCharacteristic,
