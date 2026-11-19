@@ -1,0 +1,18 @@
+name: ESP-IDF reference firmware build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build XIAO ESP32-S3 bench firmware
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.5.6
+          target: esp32s3
+          path: firmware/watch-v0
